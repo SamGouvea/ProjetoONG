@@ -1,0 +1,278 @@
+:root {
+  /* Paleta de Cores */
+  --color-primary: #1e88e5;
+  --color-primary-dark: #1565c0;
+  --color-secondary: #fbc02d;
+  --color-accent: #43a047;
+  --color-danger: #e53935;
+  --color-neutral-100: #ffffff;
+  --color-neutral-300: #e0e0e0;
+  --color-neutral-700: #424242;
+  --color-neutral-900: #212121;
+
+  /* Tipografia */
+  --font-family: "Inter", Arial, sans-serif;
+  --font-xs: 0.8rem;
+  --font-sm: 1rem;
+  --font-md: 1.25rem;
+  --font-lg: 1.75rem;
+  --font-xl: 2.5rem;
+
+  /* Espaçamento Modular */
+  --space-1: 8px;
+  --space-2: 16px;
+  --space-3: 24px;
+  --space-4: 32px;
+  --space-5: 48px;
+  --space-6: 64px;
+
+  /* Grid Customizado */
+  --grid-columns: 12;
+  --grid-gap: 16px;
+}
+
+/*ESTILOS GERAIS*/
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-family);
+  color: var(--color-neutral-900);
+  background-color: var(--color-neutral-100);
+  line-height: 1.6;
+}
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/*CABEÇALHO E MENU*/
+.site-header {
+  background: var(--color-primary);
+  color: var(--color-neutral-100);
+  padding: var(--space-2) 0;
+}
+
+.site-header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.site-header h1 {
+  font-size: var(--font-lg);
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: var(--space-2);
+}
+
+nav a {
+  color: var(--color-neutral-100);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s;
+}
+
+nav a:hover,
+nav a:focus {
+  color: var(--color-secondary);
+}
+
+/* Menu responsivo */
+nav .menu-toggle {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 4px;
+}
+
+nav .menu-toggle span {
+  background: var(--color-neutral-100);
+  width: 25px;
+  height: 3px;
+}
+
+@media (max-width: 768px) {
+  nav ul {
+    display: none;
+    flex-direction: column;
+    background: var(--color-primary-dark);
+    position: absolute;
+    top: 60px;
+    right: 0;
+    width: 200px;
+    padding: var(--space-2);
+  }
+
+  nav ul.show {
+    display: flex;
+  }
+
+  nav .menu-toggle {
+    display: flex;
+  }
+}
+
+/*LAYOUT GERAL COM GRID*/
+main.container {
+  display: grid;
+  grid-template-columns: repeat(var(--grid-columns), 1fr);
+  gap: var(--grid-gap);
+  padding: var(--space-4) 0;
+}
+
+main section {
+  grid-column: span 12;
+  margin-bottom: var(--space-4);
+}
+
+main img {
+  width: 100%;
+  border-radius: 8px;
+  margin-top: var(--space-2);
+}
+
+/* Responsividade */
+@media (min-width: 768px) {
+  main section {
+    grid-column: span 6;
+  }
+}
+
+@media (min-width: 1024px) {
+  main section {
+    grid-column: span 4;
+  }
+}
+
+/*COMPONENTES DE INTERFACE*/
+
+/* Botões */
+.btn {
+  background: var(--color-primary);
+  color: var(--color-neutral-100);
+  padding: var(--space-2) var(--space-3);
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: var(--font-sm);
+  transition: background 0.3s, transform 0.2s;
+}
+
+.btn:hover {
+  background: var(--color-primary-dark);
+  transform: translateY(-2px);
+}
+
+.btn:disabled {
+  background: var(--color-neutral-300);
+  cursor: not-allowed;
+}
+
+/* Cards */
+article {
+  background: var(--color-neutral-100);
+  border: 1px solid var(--color-neutral-300);
+  border-radius: 8px;
+  padding: var(--space-3);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s;
+}
+
+article:hover {
+  transform: scale(1.02);
+}
+
+/* Formulário */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+label {
+  font-weight: 600;
+}
+
+input, select {
+  padding: var(--space-1);
+  border: 1px solid var(--color-neutral-300);
+  border-radius: 4px;
+  font-size: var(--font-sm);
+}
+
+input:focus, select:focus {
+  outline: 2px solid var(--color-secondary);
+}
+
+/* Feedback visual */
+#form-feedback {
+  margin-top: var(--space-2);
+  font-weight: bold;
+}
+
+/* Alerts e toasts */
+.alert {
+  padding: var(--space-2);
+  border-radius: 6px;
+  margin: var(--space-2) 0;
+}
+
+.alert.success {
+  background: var(--color-accent);
+  color: var(--color-neutral-100);
+}
+
+.alert.error {
+  background: var(--color-danger);
+  color: var(--color-neutral-100);
+}
+
+/* Badges e Tags */
+.badge {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 12px;
+  background: var(--color-secondary);
+  color: var(--color-neutral-900);
+  font-size: var(--font-xs);
+  margin-right: var(--space-1);
+}
+
+/*RODAPÉ*/
+.site-footer {
+  background: var(--color-neutral-900);
+  color: var(--color-neutral-100);
+  text-align: center;
+  padding: var(--space-3);
+  font-size: var(--font-sm);
+}
+
+/*BREAKPOINTS*/
+@media (max-width: 1280px) {
+  body { font-size: 95%; }
+}
+
+@media (max-width: 1024px) {
+  main.container { grid-template-columns: repeat(8, 1fr); }
+}
+
+@media (max-width: 768px) {
+  main.container { grid-template-columns: repeat(6, 1fr); }
+}
+
+@media (max-width: 480px) {
+  main.container { grid-template-columns: repeat(4, 1fr); }
+}
+
+@media (max-width: 320px) {
+  body { font-size: 90%; }
+}
