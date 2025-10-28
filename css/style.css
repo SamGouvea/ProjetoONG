@@ -127,6 +127,7 @@ main.container {
   grid-template-columns: repeat(var(--grid-columns), 1fr);
   gap: var(--grid-gap);
   padding: var(--space-4) 0;
+  flex: 1;
 }
 
 main section {
@@ -198,18 +199,22 @@ form {
   gap: var(--space-2);
 }
 
-label {
+form label {
   font-weight: 600;
+  margin-bottom: 4px;
 }
 
-input, select {
+form input,
+form select {
+  width: 100%;
   padding: var(--space-1);
   border: 1px solid var(--color-neutral-300);
   border-radius: 4px;
   font-size: var(--font-sm);
 }
 
-input:focus, select:focus {
+input:focus,
+select:focus {
   outline: 2px solid var(--color-secondary);
 }
 
@@ -258,21 +263,81 @@ input:focus, select:focus {
 
 /*BREAKPOINTS*/
 @media (max-width: 1280px) {
-  body { font-size: 95%; }
+  body {
+    font-size: 95%;
+  }
 }
 
 @media (max-width: 1024px) {
-  main.container { grid-template-columns: repeat(8, 1fr); }
+  main.container {
+    grid-template-columns: repeat(8, 1fr);
+  }
 }
 
 @media (max-width: 768px) {
-  main.container { grid-template-columns: repeat(6, 1fr); }
+  main.container {
+    grid-template-columns: repeat(6, 1fr);
+  }
 }
 
 @media (max-width: 480px) {
-  main.container { grid-template-columns: repeat(4, 1fr); }
+  main.container {
+    grid-template-columns: repeat(4, 1fr);
+  }
 }
 
 @media (max-width: 320px) {
-  body { font-size: 90%; }
+  body {
+    font-size: 90%;
+  }
+}
+
+html,
+body {
+  height: 100%;
+}
+
+.page-wrapper {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Desativa o grid na página de cadastro */
+body.cadastro main.container {
+  display: block;
+  grid-template-columns: none;
+  gap: 0;
+  padding: var(--space-4) 0;
+}
+
+/* Desativa o grid na página de projetos */
+body.projetos main.container {
+  display: block;
+  grid-template-columns: none;
+  gap: 0;
+  padding: var(--space-4) 0;
+}
+
+/* Cards lado a lado na página de projetos */
+.projetos-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-3);
+  margin-top: var(--space-4);
+}
+
+.projeto {
+  background: var(--color-neutral-100);
+  border: 1px solid var(--color-neutral-300);
+  padding: var(--space-3);
+  border-radius: 8px;
+  text-align: center;
+}
+
+form button {
+  padding: var(--space-1) var(--space-2);
+  font-size: var(--font-xs);
+  width: 150px;
+  align-self: center;
 }

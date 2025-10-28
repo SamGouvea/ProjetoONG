@@ -80,7 +80,7 @@ document.addEventListener("input", function (e) {
   
   // SPA básico e templates
   
-  // Função para carregar conteúdo dinamicamente (simples)
+  // Função para carregar conteúdo dinamicamente
   function loadPage(page) {
     const main = document.getElementById("main");
     if (!main) return;
